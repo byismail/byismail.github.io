@@ -467,8 +467,18 @@
 
     .services__unlock {
       display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: var(--space-2);
       justify-content: flex-end;
       margin-top: var(--space-6);
+    }
+
+    .services__unlock-hint {
+      font-size: var(--text-xs);
+      color: var(--color-ink-faint);
+      text-align: right;
+      max-width: 34rem;
     }
 
     .btn-unlock {
@@ -1047,11 +1057,31 @@
             </ul>
             <p class="service-card__fee">●●,●●● – ●●,●●● DZD</p>
           </article>
+          <article class="service-card" aria-labelledby="service-6-title">
+            <span class="service-card__num">06</span>
+            <h3 id="service-6-title" class="service-card__title">Product Technical Analysis</h3>
+            <p class="service-card__desc">
+              When a client presents a product, feature, or technical request, I help you understand what it
+              really requires before you commit. I can also join the technical meeting, ask the right questions,
+              explain constraints, and give your team an independent technical perspective.
+            </p>
+            <ul class="service-card__deliverables" role="list">
+              <li>Technical analysis of the proposed product or feature</li>
+              <li>Clarifying questions and assumptions to validate with the client</li>
+              <li>Feasibility, complexity, dependency, and risk assessment</li>
+              <li>Technical meeting participation and clear recommendations</li>
+            </ul>
+            <p class="service-card__fee">●●,●●● – ●●,●●● DZD</p>
+          </article>
 
         </div>
 
         <div class="services__unlock">
-          <button class="btn-unlock" id="unlockBtn" type="button" aria-label="Unlock pricing">
+          <p class="services__unlock-hint" id="pricing-hint">
+            The pricing PIN is shared privately after we discuss your projects
+          </p>
+          <button class="btn-unlock" id="unlockBtn" type="button" aria-label="Unlock pricing"
+            aria-describedby="pricing-hint">
             🔒 Unlock pricing
           </button>
         </div>
@@ -1073,48 +1103,55 @@
         <article class="case-study" aria-labelledby="cs-1-title">
           <div class="case-study__meta">
             <span class="case-study__num">Case 01</span>
-            <span class="mono-tag">Enterprise Admin Panel</span>
+            <span class="mono-tag">Banking</span>
+            <span class="mono-tag">Frontend Architecture</span>
+            <span class="mono-tag">Design System</span>
           </div>
           <div class="case-study__layout">
             <div>
-              <h3 id="cs-1-title" class="heading-3 case-study__title">Restructuring an Enterprise Admin Panel at Scale
-              </h3>
+              <h3 id="cs-1-title" class="heading-3 case-study__title"><a href="/angular-design-system/" style="text-decoration:none;color:inherit;">From UI Fragmentation to a Shared Frontend Platform</a></h3>
               <p class="case-study__context">
-                TODO
+                Three banking products shared many of the same interface patterns but had no common UI foundation.
+                Similar components were being implemented independently, creating inconsistencies and making
+                maintenance increasingly expensive.
               </p>
               <blockquote class="case-study__problem">
-                TODO
+                The same UI problems were being solved repeatedly by different parts of the team — slowing
+                development and making changes harder to maintain.
               </blockquote>
             </div>
             <div class="case-study__detail-grid">
               <div class="case-study__detail">
                 <h4>Constraints</h4>
                 <ul role="list">
-                  <li>TODO</li>
-                  <li>TODO</li>
-                  <li>TODO</li>
-                  <li>TODO</li>
+                  <li>No existing shared UI foundation</li>
+                  <li>3 products evolving independently</li>
+                  <li>~5 developers, 1 designer</li>
+                  <li>Design system built from scratch</li>
                 </ul>
               </div>
               <div class="case-study__detail">
                 <h4>Solution</h4>
                 <ul role="list">
-                  <li>TODO</li>
-                  <li>TODO</li>
-                  <li>TODO</li>
-                  <li>TODO</li>
+                  <li>Nx monorepo workspace architecture</li>
+                  <li>30+ shared presentation components</li>
+                  <li>PrimeNG for interaction mechanics</li>
+                  <li>Storybook as collaboration layer</li>
                 </ul>
               </div>
               <div class="case-study__detail case-study__detail--outcome">
                 <h4>Outcome</h4>
                 <ul role="list">
-                  <li>TODO</li>
-                  <li>TODO</li>
-                  <li>TODO</li>
-                  <li>TODO</li>
+                  <li>Consistent UI across 3 products</li>
+                  <li>Faster feature development</li>
+                  <li>Clear debugging boundaries</li>
+                  <li>Zero business logic in UI library</li>
                 </ul>
               </div>
             </div>
+          </div>
+          <div style="margin-top: var(--space-6);">
+            <a href="/angular-design-system/" style="display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--color-ink-muted);text-decoration:none;border-bottom:1px solid var(--color-border);padding-bottom:var(--space-1);">Read full case study →</a>
           </div>
         </article>
 
@@ -1122,47 +1159,52 @@
         <article class="case-study" aria-labelledby="cs-2-title">
           <div class="case-study__meta">
             <span class="case-study__num">Case 02</span>
-            <span class="mono-tag">Nx Monorepo · Design System</span>
+            <span class="mono-tag">Camunda</span>
+            <span class="mono-tag">BPMN.js</span>
+            <span class="mono-tag">TypeScript</span>
           </div>
           <div class="case-study__layout">
             <div>
-              <h3 id="cs-2-title" class="heading-3 case-study__title">Nx-Based Design System with Storybook for a
-                Multi-Product SaaS</h3>
+              <h3 id="cs-2-title" class="heading-3 case-study__title"><a href="/camunda-workflow-toolkit/" style="text-decoration:none;color:inherit;">Camunda Workflow Toolkit</a></h3>
               <p class="case-study__context">
-                TODO </p>
+                Our backend already relied on Camunda, but workflow management lived outside the product. I designed and built a frontend toolkit that brought BPMN editing, workflow lifecycle management, versioning, and instance monitoring into the application.
+              </p>
               <blockquote class="case-study__problem">
-                TODO
+                If workflows are a core capability of our product, why should users need to leave the product to manage them?
               </blockquote>
             </div>
             <div class="case-study__detail-grid">
               <div class="case-study__detail">
                 <h4>Constraints</h4>
                 <ul role="list">
-                  <li>TODO</li>
-                  <li>TODO</li>
-                  <li>TODO</li>
-                  <li>TODO</li>
+                  <li>Complex workflow engine</li>
+                  <li>BPMN.js default look needed customization</li>
+                  <li>Monitoring thousands of instances</li>
+                  <li>API contracts owned by backend team</li>
                 </ul>
               </div>
               <div class="case-study__detail">
                 <h4>Solution</h4>
                 <ul role="list">
-                  <li>TODO</li>
-                  <li>TODO</li>
-                  <li>TODO</li>
-                  <li>TODO</li>
+                  <li>bpmn-js components integration</li>
+                  <li>20+ custom UI components</li>
+                  <li>Native lifecycle and versioning UI</li>
+                  <li>Clear frontend/backend API boundary</li>
                 </ul>
               </div>
               <div class="case-study__detail case-study__detail--outcome">
                 <h4>Outcome</h4>
                 <ul role="list">
-                  <li>TODO</li>
-                  <li>TODO</li>
-                  <li>TODO</li>
-                  <li>TODO</li>
+                  <li>10+ workflows managed directly</li>
+                  <li>Thousands of instances monitored</li>
+                  <li>No external Camunda admin tools needed</li>
+                  <li>Native product design integration</li>
                 </ul>
               </div>
             </div>
+          </div>
+          <div style="margin-top: var(--space-6);">
+            <a href="/camunda-workflow-toolkit/" style="display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--color-ink-muted);text-decoration:none;border-bottom:1px solid var(--color-border);padding-bottom:var(--space-1);">Read full case study →</a>
           </div>
         </article>
 
@@ -1247,11 +1289,12 @@
         [90129, 31473, 1],
         [71217, 31473, 1],
         [111217, 90129, 0],
-        [111217, 81665, 0]
+        [111217, 81665, 0],
+        [111217, 90129, 0]
       ];
 
       /* Verification checksum (sum of all real values XOR key) */
-      const V = 589025;
+      const V = 530241;
 
       /* Key derivation — the PIN is mathematically transformed:
          key = (pin² + pin×3 + 7) AND 0x1FFFF
