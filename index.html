@@ -7,6 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-K7PT9DHS');</script>
+  <!-- End Google Tag Manager -->
+
   <!-- SEO -->
   <title>Ismail Chelabi — Senior Frontend Engineer for Scalable SaaS Platforms</title>
   <meta name="description"
@@ -572,9 +583,21 @@
     }
 
     @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      20%, 60% { transform: translateX(-6px); }
-      40%, 80% { transform: translateX(6px); }
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      20%,
+      60% {
+        transform: translateX(-6px);
+      }
+
+      40%,
+      80% {
+        transform: translateX(6px);
+      }
     }
 
     .pin-dialog__actions {
@@ -891,6 +914,11 @@
 
 <body>
 
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K7PT9DHS" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <!-- ============================================================
        NAV
        ============================================================ -->
@@ -1109,7 +1137,9 @@
           </div>
           <div class="case-study__layout">
             <div>
-              <h3 id="cs-1-title" class="heading-3 case-study__title"><a href="/angular-design-system/" style="text-decoration:none;color:inherit;">From UI Fragmentation to a Shared Frontend Platform</a></h3>
+              <h3 id="cs-1-title" class="heading-3 case-study__title"><a href="/angular-design-system/"
+                  style="text-decoration:none;color:inherit;">From UI Fragmentation to a Shared Frontend Platform</a>
+              </h3>
               <p class="case-study__context">
                 Three banking products shared many of the same interface patterns but had no common UI foundation.
                 Similar components were being implemented independently, creating inconsistencies and making
@@ -1151,7 +1181,9 @@
             </div>
           </div>
           <div style="margin-top: var(--space-6);">
-            <a href="/angular-design-system/" style="display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--color-ink-muted);text-decoration:none;border-bottom:1px solid var(--color-border);padding-bottom:var(--space-1);">Read full case study →</a>
+            <a href="/angular-design-system/"
+              style="display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--color-ink-muted);text-decoration:none;border-bottom:1px solid var(--color-border);padding-bottom:var(--space-1);">Read
+              full case study →</a>
           </div>
         </article>
 
@@ -1165,12 +1197,16 @@
           </div>
           <div class="case-study__layout">
             <div>
-              <h3 id="cs-2-title" class="heading-3 case-study__title"><a href="/camunda-workflow-toolkit/" style="text-decoration:none;color:inherit;">Camunda Workflow Toolkit</a></h3>
+              <h3 id="cs-2-title" class="heading-3 case-study__title"><a href="/camunda-workflow-toolkit/"
+                  style="text-decoration:none;color:inherit;">Camunda Workflow Toolkit</a></h3>
               <p class="case-study__context">
-                Our backend already relied on Camunda, but workflow management lived outside the product. I designed and built a frontend toolkit that brought BPMN editing, workflow lifecycle management, versioning, and instance monitoring into the application.
+                Our backend already relied on Camunda, but workflow management lived outside the product. I designed and
+                built a frontend toolkit that brought BPMN editing, workflow lifecycle management, versioning, and
+                instance monitoring into the application.
               </p>
               <blockquote class="case-study__problem">
-                If workflows are a core capability of our product, why should users need to leave the product to manage them?
+                If workflows are a core capability of our product, why should users need to leave the product to manage
+                them?
               </blockquote>
             </div>
             <div class="case-study__detail-grid">
@@ -1204,7 +1240,9 @@
             </div>
           </div>
           <div style="margin-top: var(--space-6);">
-            <a href="/camunda-workflow-toolkit/" style="display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--color-ink-muted);text-decoration:none;border-bottom:1px solid var(--color-border);padding-bottom:var(--space-1);">Read full case study →</a>
+            <a href="/camunda-workflow-toolkit/"
+              style="display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--color-ink-muted);text-decoration:none;border-bottom:1px solid var(--color-border);padding-bottom:var(--space-1);">Read
+              full case study →</a>
           </div>
         </article>
 
@@ -1264,8 +1302,8 @@
     <div class="pin-dialog">
       <h3 id="pin-title" class="pin-dialog__title">Unlock Pricing</h3>
       <p class="pin-dialog__desc">Enter the 4-digit PIN to reveal service fees.</p>
-      <input class="pin-dialog__input" id="pinInput" type="password" inputmode="numeric"
-        maxlength="4" placeholder="····" autocomplete="off" />
+      <input class="pin-dialog__input" id="pinInput" type="password" inputmode="numeric" maxlength="4" placeholder="····"
+        autocomplete="off" />
       <div class="pin-dialog__actions">
         <button class="pin-dialog__cancel" id="pinCancel" type="button">Cancel</button>
         <button class="pin-dialog__submit" id="pinSubmit" type="button">Unlock</button>
@@ -1334,10 +1372,10 @@
 
       /* ── UI wiring ── */
       const overlay = document.getElementById('pinOverlay');
-      const input   = document.getElementById('pinInput');
+      const input = document.getElementById('pinInput');
       const btnOpen = document.getElementById('unlockBtn');
-      const btnOk   = document.getElementById('pinSubmit');
-      const btnNo   = document.getElementById('pinCancel');
+      const btnOk = document.getElementById('pinSubmit');
+      const btnNo = document.getElementById('pinCancel');
 
       function open() {
         overlay.classList.add('pin-overlay--visible');
