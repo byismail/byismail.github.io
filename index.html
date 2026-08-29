@@ -1660,11 +1660,29 @@
           },
           body: JSON.stringify({ name, email, subject, message })
         })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(`Server status: ${response.status}`);
+          .then(async (response) => {
+            let data = null;
+            const contentType = response.headers.get("content-type");
+            if (contentType && contentType.includes("application/json")) {
+              try {
+                data = await response.json();
+              } catch (e) {
+                // Ignore parse errors, data remains null
+              }
             }
-            return response.json();
+
+            // Check if status is not OK
+            if (!response.ok) {
+              const errorMessage = (data && data.error) || `Server error (status: ${response.status})`;
+              throw new Error(errorMessage);
+            }
+
+            // Check if the backend explicitly returned a failure status or error message
+            if (data && (data.success === false || data.error)) {
+              throw new Error(data.error || "An error occurred on the server.");
+            }
+
+            return data;
           })
           .then((data) => {
             // Success
@@ -1675,7 +1693,8 @@
           })
           .catch((error) => {
             console.error("Error submitting contact form:", error);
-            messageDiv.textContent = 'Oops! Something went wrong. Please check your connection and try again.';
+            // Display the specific error message from the backend
+            messageDiv.textContent = error.message || 'Oops! Something went wrong. Please check your connection and try again.';
             messageDiv.classList.add('contact-form__message--error');
             messageDiv.style.display = 'block';
           })
