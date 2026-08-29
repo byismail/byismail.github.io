@@ -22,6 +22,10 @@
     content="Case study: Bringing workflow design, management, and monitoring directly into the product using Camunda, BPMN.js, and TypeScript." />
   <meta name="author" content="Ismail Chelabi" />
   <link rel="canonical" href=" " />
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png" />
+  <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="article" />
@@ -232,6 +236,13 @@
       letter-spacing: 0.04em;
       text-decoration: none;
       color: var(--color-ink);
+      display: flex;
+      align-items: center;
+    }
+
+    .nav__logo img {
+      height: 1.5rem;
+      width: auto;
     }
 
     .nav__links {
@@ -655,7 +666,9 @@
   <header>
     <nav class="nav" aria-label="Primary navigation">
       <div class="container nav__inner">
-        <a class="nav__logo" href="/" aria-label="Ismail Chelabi — Home">byIsmail</a>
+        <a class="nav__logo" href="/" aria-label="Ismail Chelabi — Home">
+          <img src="../images/apple-touch-icon.png" alt="byIsmail" />
+        </a>
         <ul class="nav__links" role="list">
           <li><a href="/#services">Services</a></li>
           <li><a href="/#case-studies">Work</a></li>
