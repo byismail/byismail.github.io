@@ -847,7 +847,7 @@
     @media (min-width: 768px) {
       .contact__inner {
         grid-template-columns: 1fr 1fr;
-        align-items: end;
+        align-items: start;
       }
     }
 
@@ -892,6 +892,92 @@
 
     .contact__item-value:hover {
       color: var(--color-ink);
+    }
+
+    /* Contact Form Styles */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .contact-form__group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .contact-form__label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-ink-faint);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .contact-form__input,
+    .contact-form__textarea {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 300;
+      padding: var(--space-3) var(--space-4);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      background: var(--color-surface);
+      color: var(--color-ink);
+      outline: none;
+      width: 100%;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .contact-form__input:focus,
+    .contact-form__textarea:focus {
+      border-color: var(--color-accent);
+      background: var(--color-bg);
+    }
+
+    .contact-form__textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .contact-form__submit {
+      align-self: flex-start;
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--color-bg);
+      background: var(--color-accent);
+      padding: var(--space-3) var(--space-6);
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      letter-spacing: 0.02em;
+      transition: background-color 0.2s ease, opacity 0.2s ease;
+    }
+
+    .contact-form__submit:hover {
+      background: var(--color-ink);
+    }
+
+    .contact-form__submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .contact-form__message {
+      font-size: var(--text-sm);
+      font-family: var(--font-mono);
+      line-height: 1.5;
+      margin-top: var(--space-2);
+    }
+
+    .contact-form__message--success {
+      color: var(--color-accent);
+    }
+
+    .contact-form__message--error {
+      color: #B44;
     }
 
     /* ============================================================
@@ -1361,31 +1447,53 @@
     <section id="contact" class="contact" aria-labelledby="contact-heading">
       <div class="container">
         <div class="contact__inner">
-          <div>
+          <div class="contact__content">
             <p class="label" style="margin-bottom: var(--space-4)">Get in touch</p>
             <h2 id="contact-heading" class="heading-2 contact__heading">Let's talk architecture</h2>
-            <p class="contact__blurb">
+            <p class="contact__blurb" style="margin-bottom: var(--space-8)">
               If you're dealing with a scaling codebase, starting a design system, or navigating a tricky SDK
               integration — reach out. I'm happy to have a no-obligation conversation about where you are and what kind
               of support makes sense.
             </p>
+
+            <address style="font-style: normal;">
+              <div class="contact__details">
+
+
+                <div class="contact__item">
+                  <span class="contact__item-label">Location</span>
+                  <span class="contact__item-value">Remote · CET timezone</span>
+                </div>
+              </div>
+            </address>
           </div>
 
-          <address style="font-style: normal;">
-            <div class="contact__details">
-
-              <div class="contact__item">
-                <span class="contact__item-label">LinkedIn</span>
-                <a class="contact__item-value" href="" target="_blank"
-                  rel="noopener noreferrer">linkedin.com/in/your-profile</a>
+          <div class="contact__form-container">
+            <form id="contactForm" class="contact-form">
+              <div class="contact-form__group">
+                <label for="contact-name" class="contact-form__label">Name</label>
+                <input type="text" id="contact-name" name="name" class="contact-form__input" required placeholder="Your name">
               </div>
 
-              <div class="contact__item">
-                <span class="contact__item-label">Location</span>
-                <span class="contact__item-value">Remote · CET timezone</span>
+              <div class="contact-form__group">
+                <label for="contact-email" class="contact-form__label">Email</label>
+                <input type="email" id="contact-email" name="email" class="contact-form__input" required placeholder="your.email@example.com">
               </div>
-            </div>
-          </address>
+
+              <div class="contact-form__group">
+                <label for="contact-subject" class="contact-form__label">Subject</label>
+                <input type="text" id="contact-subject" name="subject" class="contact-form__input" required placeholder="How can I help you?">
+              </div>
+
+              <div class="contact-form__group">
+                <label for="contact-message" class="contact-form__label">Message</label>
+                <textarea id="contact-message" name="message" class="contact-form__textarea" required placeholder="Tell me more about your project or questions..."></textarea>
+              </div>
+
+              <button type="submit" id="contactSubmit" class="contact-form__submit">Send Message</button>
+              <div id="contactMessage" class="contact-form__message" aria-live="polite" style="display: none;"></div>
+            </form>
+          </div>
         </div>
       </div>
     </section>
@@ -1511,6 +1619,72 @@
       btnOk.addEventListener('click', submit);
       input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
       overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+    })();
+  </script>
+
+  <!-- ============================================================
+       CONTACT FORM SUBMISSION SCRIPT
+       ============================================================ -->
+  <script>
+    (() => {
+      const form = document.getElementById('contactForm');
+      if (!form) return;
+
+      const submitBtn = document.getElementById('contactSubmit');
+      const messageDiv = document.getElementById('contactMessage');
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        // Disable submit button and show loading state
+        submitBtn.disabled = true;
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+
+        // Reset message container
+        messageDiv.style.display = 'none';
+        messageDiv.className = 'contact-form__message';
+        messageDiv.textContent = '';
+
+        // Extract values
+        const name = document.getElementById('contact-name').value;
+        const email = document.getElementById('contact-email').value;
+        const subject = document.getElementById('contact-subject').value;
+        const message = document.getElementById('contact-message').value;
+
+        // Post to backend API
+        fetch("https://contact-c202e7.netlify.app/.netlify/functions/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ name, email, subject, message })
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`Server status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            // Success
+            messageDiv.textContent = 'Thank you! Your message has been sent successfully.';
+            messageDiv.classList.add('contact-form__message--success');
+            messageDiv.style.display = 'block';
+            form.reset();
+          })
+          .catch((error) => {
+            console.error("Error submitting contact form:", error);
+            messageDiv.textContent = 'Oops! Something went wrong. Please check your connection and try again.';
+            messageDiv.classList.add('contact-form__message--error');
+            messageDiv.style.display = 'block';
+          })
+          .finally(() => {
+            // Restore button
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+          });
+      });
     })();
   </script>
 
